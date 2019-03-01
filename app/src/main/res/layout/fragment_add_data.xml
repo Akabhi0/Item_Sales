@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isEmpty"
+            type="boolean" />
+
+        <variable
+            name="customerItem"
+            type="com.example.item_sales.model.CustomerItem" />
+
+        <variable
+            name="addItemDataFragmentViewModel"
+            type="com.example.item_sales.viewmodel.AddItemDataFragmentViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/acet_itemName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_border"
+                android:hint="Item Name"
+                android:maxLength="8"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:text="@={customerItem.itemName}"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/quantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:hint="Quantity"
+                android:inputType="number"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:text="@={customerItem.quantity}"
+                app:layout_constraintEnd_toStartOf="@+id/rate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/acet_itemName" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/rate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:hint="Rate"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:text="@={customerItem.rate}"
+                app:layout_constraintEnd_toStartOf="@+id/rateAmount"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@+id/quantity"
+                app:layout_constraintTop_toBottomOf="@+id/acet_itemName" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/rateAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:enabled="false"
+                android:hint="2000"
+                android:inputType="number"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/rate"
+                app:layout_constraintTop_toBottomOf="@+id/acet_itemName" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sgst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:hint="SGST"
+                android:padding="10dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/sgstChecked"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rate" />
+
+            <CheckBox
+                android:id="@+id/sgstChecked"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_green"
+                android:padding="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/sgstAmount"
+                app:layout_constraintStart_toEndOf="@+id/sgst"
+                app:layout_constraintTop_toBottomOf="@+id/rate"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sgstAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:hint="0.0"
+                android:inputType="number"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/sgstChecked"
+                app:layout_constraintTop_toBottomOf="@+id/rate" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/cgst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:hint="CGST"
+                android:padding="10dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/cgstChecked"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sgst" />
+
+            <CheckBox
+                android:id="@+id/cgstChecked"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_green"
+                android:padding="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/cgstAmount"
+                app:layout_constraintStart_toEndOf="@+id/cgst"
+                app:layout_constraintTop_toBottomOf="@+id/sgstChecked" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/cgstAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:hint="0.0"
+                android:inputType="number"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cgstChecked"
+                app:layout_constraintTop_toBottomOf="@+id/sgstAmount" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/totalAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:padding="10dp"
+                android:text="total Amount"
+                app:layout_constraintTop_toBottomOf="@+id/cgstAmount" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_itemName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:padding="8dp"
+                android:text="Item"
+                app:layout_constraintEnd_toStartOf="@id/actv_rate"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/totalAmount" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_rate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:padding="8dp"
+                android:text="Quantity"
+                app:layout_constraintEnd_toStartOf="@id/actv_quantity"
+                app:layout_constraintStart_toEndOf="@id/actv_itemName"
+                app:layout_constraintTop_toBottomOf="@+id/totalAmount" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_quantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:padding="8dp"
+                android:text="Rate"
+                app:layout_constraintEnd_toStartOf="@id/actv_total"
+                app:layout_constraintStart_toEndOf="@id/actv_rate"
+                app:layout_constraintTop_toBottomOf="@+id/totalAmount" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:padding="8dp"
+                android:text="Total Amt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/actv_quantity"
+                app:layout_constraintTop_toBottomOf="@+id/totalAmount" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerItemAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                app:layout_constraintTop_toBottomOf="@+id/actv_total"></androidx.recyclerview.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_border_buttom"
+                android:onClick="@{() -> addItemDataFragmentViewModel.isVaildItemDataCheck()}"
+                android:text="add"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerItemAdd" />
+
+            <Button
+                android:id="@+id/save"
+                isVisible="@{!isEmpty}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_border_buttom"
+                android:text="save"
+                app:layout_constraintTop_toBottomOf="@+id/add" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

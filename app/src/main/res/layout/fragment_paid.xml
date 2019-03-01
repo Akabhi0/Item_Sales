@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/dimes_16dp"
+        android:paddingTop="@dimen/dimes_16dp"
+        android:paddingEnd="@dimen/dimes_16dp">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/paidSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/searchbackfround"
+            android:padding="@dimen/dimes_16dp"
+            app:layout_constraintBottom_toTopOf="@+id/scroll"
+            tools:ignore="MissingConstraints" />
+
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimes_16dp"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@+id/paidSearch"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/paidRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingActionButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="150dp"
+                    android:elevation="@dimen/dimes_16dp"
+                    android:paddingBottom="@dimen/dimes_16dp"
+                    android:src="@drawable/ic_add_black_24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/paidRecycler" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

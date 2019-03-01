@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="customerItem"
+            type="com.example.item_sales.model.CustomerItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_itemName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_green"
+            android:padding="8dp"
+            android:text="@{customerItem.itemName}"
+            app:layout_constraintEnd_toStartOf="@id/actv_rate"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/acet_date" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_green"
+            android:padding="8dp"
+            android:text="@{customerItem.quantity}"
+            app:layout_constraintEnd_toStartOf="@id/actv_quantity"
+            app:layout_constraintStart_toEndOf="@id/actv_itemName"
+            app:layout_constraintTop_toBottomOf="@+id/acet_date" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_quantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_green"
+            android:padding="8dp"
+            android:text="@{customerItem.rate}"
+            app:layout_constraintEnd_toStartOf="@id/actv_total"
+            app:layout_constraintStart_toEndOf="@id/actv_rate"
+            app:layout_constraintTop_toBottomOf="@+id/acet_date" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_total"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_green"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/actv_quantity"
+            app:layout_constraintTop_toBottomOf="@+id/acet_date" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

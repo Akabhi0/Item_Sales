@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="customerDataBase"
+            type="com.example.item_sales.model.CustomerDataBase" />
+
+        <variable
+            name="setOnclickListner"
+            type="com.example.item_sales.adapter.PartiatPaidAdapter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimes_16dp"
+        android:background="@drawable/border_green"
+        android:orientation="vertical"
+        android:paddingBottom="5dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/customerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bacground_grey"
+            android:padding="@dimen/dimes_16dp"
+            android:text="@{customerDataBase.name_customer}"
+            app:layout_constraintEnd_toStartOf="@+id/customerTotalAmount"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/customerTotalAmount"
+            setText="@{customerDataBase.total_amount_customer}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bacground_grey"
+            android:padding="@dimen/dimes_16dp"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/customerName"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/customerDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bacground_grey"
+            android:padding="@dimen/dimes_16dp"
+            android:text="@{customerDataBase.date_customer}"
+            app:layout_constraintEnd_toStartOf="@+id/customerPaidAmount"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customerTotalAmount"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/customerPaidAmount"
+            setText="@{customerDataBase.balance_amount_customer}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bacground_grey"
+            android:padding="@dimen/dimes_16dp"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/customerDate"
+            app:layout_constraintTop_toBottomOf="@+id/customerTotalAmount"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/pay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dimes_16dp"
+            android:background="@drawable/background_border_buttom"
+            android:text="@string/pay"
+            app:layout_constraintEnd_toStartOf="@+id/delete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customerPaidAmount"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dimes_16dp"
+            android:background="@drawable/background_border_buttom"
+            android:text="@string/delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/pay"
+            app:layout_constraintTop_toBottomOf="@+id/customerPaidAmount"
+            tools:ignore="MissingConstraints" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

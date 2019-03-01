@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="doubleBalanceAmount"
+            type="double" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="customDialoge"
+            type="com.example.item_sales.viewmodel.CustomDialogeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimes_32dp"
+        android:background="@color/dark"
+        android:padding="5dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:text="@{title}"
+            android:textAlignment="center"
+            android:textColor="@color/dark"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/balanceAmount"
+            setText="@{doubleBalanceAmount}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:hint="19"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/amountFill"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_margin="25dp"
+            android:background="@drawable/background_border_white"
+            android:hint="enter amount"
+            android:inputType="numberDecimal"
+            android:padding="@dimen/dimes_16dp"
+            app:layout_constraintTop_toBottomOf="@+id/balanceAmount"
+            tools:layout_editor_absoluteX="30dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimes_16dp"
+            android:layout_marginTop="@dimen/dimes_16dp"
+            android:onClick="@{() -> customDialoge.onValid()}"
+            android:text="save"
+            app:layout_constraintEnd_toStartOf="@+id/cancel"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amountFill" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimes_16dp"
+            android:layout_marginEnd="@dimen/dimes_16dp"
+            android:text="cancel"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/update"
+            app:layout_constraintTop_toBottomOf="@+id/amountFill" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

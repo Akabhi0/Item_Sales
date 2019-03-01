@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isEmpty"
+            type="boolean" />
+
+        <variable
+            name="quantity"
+            type="String" />
+
+        <variable
+            name="totalAmount"
+            type="String" />
+
+        <variable
+            name="buttonText"
+            type="String" />
+
+        <variable
+            name="customerDataBase"
+            type="com.example.item_sales.model.CustomerDataBase" />
+
+        <variable
+            name="addItemViewModel"
+            type="com.example.item_sales.viewmodel.AddItemViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".views.AddCustomer">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/acet_name"
+                isEnable="@{isEmpty}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_border"
+                android:hint="@string/hint_name"
+                android:padding="@dimen/dimes_16dp"
+                android:text="@={customerDataBase.name_customer}"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/acet_date"
+                isEnable="@{isEmpty}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_border"
+                android:hint="@string/hint_date"
+                android:padding="@dimen/dimes_16dp"
+                android:text="@={customerDataBase.date_customer}"
+                app:layout_constraintTop_toBottomOf="@+id/acet_name"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_itemName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:padding="8dp"
+                android:text="Item"
+                app:layout_constraintEnd_toStartOf="@id/actv_rate"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/acet_date" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_rate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:padding="8dp"
+                android:text="Quantity"
+                app:layout_constraintEnd_toStartOf="@id/actv_quantity"
+                app:layout_constraintStart_toEndOf="@id/actv_itemName"
+                app:layout_constraintTop_toBottomOf="@+id/acet_date" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_quantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:padding="8dp"
+                android:text="Rate"
+                app:layout_constraintEnd_toStartOf="@id/actv_total"
+                app:layout_constraintStart_toEndOf="@id/actv_rate"
+                app:layout_constraintTop_toBottomOf="@+id/acet_date" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:padding="8dp"
+                android:text="Total Amt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/actv_quantity"
+                app:layout_constraintTop_toBottomOf="@+id/acet_date" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerItemAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                app:layout_constraintTop_toBottomOf="@+id/actv_itemName" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_sub_total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:padding="8dp"
+                android:text="Sub Total"
+                app:layout_constraintEnd_toStartOf="@id/actv_total_quantity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerItemAdd" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_total_quantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_green"
+                android:padding="8dp"
+                android:text="@{quantity}"
+                app:layout_constraintEnd_toStartOf="@id/actv_amount"
+                app:layout_constraintStart_toEndOf="@id/actv_sub_total"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerItemAdd" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_amount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_green"
+                android:padding="8dp"
+                android:text="@{totalAmount}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/actv_total_quantity"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerItemAdd" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="16dp"
+                android:elevation="@dimen/dimes_16dp"
+                android:src="@drawable/ic_add_black_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/actv_sub_total" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/acet_amount"
+                isEnable="@{isEmpty}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_border"
+                android:hint="@string/hint_amount"
+                android:padding="@dimen/dimes_16dp"
+                app:layout_constraintTop_toBottomOf="@+id/floatingActionButton" />
+
+            <Button
+                android:id="@+id/verify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimes_16dp"
+                android:layout_marginTop="@dimen/dimes_16dp"
+                android:layout_marginEnd="@dimen/dimes_16dp"
+                android:background="@drawable/background_border_buttom"
+                android:onClick="@{() -> addItemViewModel.isValid()}"
+                android:text="@string/save_as_user"
+                app:layout_constraintTop_toBottomOf="@+id/acet_amount" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>
