@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModel;
 
 public class CustomDialogeViewModel extends ViewModel {
     private int id;
-    private double balamceAmount, remainAmount;
+    private double balamceAmount;
     private String doubleBalanceAmount;
     private MutableLiveData<String> isEmpty = new MutableLiveData<>();
     private MutableLiveData<Boolean> isValid = new MutableLiveData<>();
@@ -46,12 +46,12 @@ public class CustomDialogeViewModel extends ViewModel {
         } else if (TextUtils.isEmpty(doubleBalanceAmount)) {
             setIsEmpty(ErrorLogs.VALID_AMOUNT);
         } else if (Double.parseDouble(doubleBalanceAmount) <= balamceAmount) {
-            remainAmount = balamceAmount - Double.parseDouble(doubleBalanceAmount);
+            balamceAmount = balamceAmount - Double.parseDouble(doubleBalanceAmount);
             setIsValid(true);
         }
     }
 
     public void updateCustomerData() {
-        repository.getAllUpdatedData(id, remainAmount);
+        repository.getAllUpdatedData(id, balamceAmount);
     }
 }
